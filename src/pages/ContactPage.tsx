@@ -19,6 +19,7 @@ export default function ContactPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [website, setWebsite] = useState(''); // Honeypot field
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
   const { toast } = useToast();
@@ -42,11 +43,25 @@ export default function ContactPage() {
     setLoading(true);
 
     try {
-      const { error } = await supabase
-        .from('contact_messages')
-        .insert({ name, email, message });
+      const response = await supabase.functions.invoke('submit-contact', {
+        body: { name, email, message, website }
+      });
 
-      if (error) throw error;
+      if (response.error) throw response.error;
+      
+      const data = response.data;
+      if (data?.error) {
+        if (data.error.includes('Too many requests')) {
+          toast({
+            title: 'Límite alcanzado',
+            description: 'Has enviado demasiados mensajes. Intenta más tarde.',
+            variant: 'destructive',
+          });
+        } else {
+          throw new Error(data.error);
+        }
+        return;
+      }
 
       toast({
         title: '¡Mensaje enviado!',
@@ -56,6 +71,7 @@ export default function ContactPage() {
       setName('');
       setEmail('');
       setMessage('');
+      setWebsite('');
     } catch {
       toast({
         title: 'Error',
@@ -88,6 +104,20 @@ export default function ContactPage() {
           <div className="max-w-xl mx-auto">
             <div className="bg-card rounded-xl border border-border/50 p-6 md:p-8">
               <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Honeypot field - hidden from users, filled by bots */}
+                <div className="absolute -left-[9999px]" aria-hidden="true">
+                  <Label htmlFor="website">Website</Label>
+                  <Input
+                    id="website"
+                    name="website"
+                    type="text"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+                
                 <div>
                   <Label htmlFor="name">Nombre</Label>
                   <Input

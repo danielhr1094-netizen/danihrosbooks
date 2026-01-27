@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Send, Loader2 } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
@@ -9,13 +10,8 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { z } from 'zod';
 
-const contactSchema = z.object({
-  name: z.string().min(1, 'El nombre es requerido').max(100),
-  email: z.string().email('Email inválido').max(255),
-  message: z.string().min(1, 'El mensaje es requerido').max(1000),
-});
-
 export default function ContactPage() {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -23,6 +19,12 @@ export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
   const { toast } = useToast();
+
+  const contactSchema = z.object({
+    name: z.string().min(1, t('contact.validation.nameRequired')).max(100),
+    email: z.string().email(t('contact.validation.emailInvalid')).max(255),
+    message: z.string().min(1, t('contact.validation.messageRequired')).max(1000),
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,8 +55,8 @@ export default function ContactPage() {
       if (data?.error) {
         if (data.error.includes('Too many requests')) {
           toast({
-            title: 'Límite alcanzado',
-            description: 'Has enviado demasiados mensajes. Intenta más tarde.',
+            title: t('contact.rateLimitTitle'),
+            description: t('contact.rateLimitDesc'),
             variant: 'destructive',
           });
         } else {
@@ -64,8 +66,8 @@ export default function ContactPage() {
       }
 
       toast({
-        title: '¡Mensaje enviado!',
-        description: 'Gracias por tu mensaje. Te responderé pronto.',
+        title: t('contact.success'),
+        description: t('contact.successDesc'),
       });
       
       setName('');
@@ -74,8 +76,8 @@ export default function ContactPage() {
       setWebsite('');
     } catch {
       toast({
-        title: 'Error',
-        description: 'No se pudo enviar el mensaje. Intenta de nuevo.',
+        title: t('contact.error'),
+        description: t('contact.errorDesc'),
         variant: 'destructive',
       });
     } finally {
@@ -89,11 +91,10 @@ export default function ContactPage() {
       <section className="py-16 md:py-24 bg-card/50">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Contacto
+            {t('contact.title')}
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            ¿Tienes preguntas, sugerencias o simplemente quieres decir hola? 
-            Me encantaría saber de ti.
+            {t('contact.subtitle')}
           </p>
         </div>
       </section>
@@ -119,12 +120,12 @@ export default function ContactPage() {
                 </div>
                 
                 <div>
-                  <Label htmlFor="name">Nombre</Label>
+                  <Label htmlFor="name">{t('contact.name')}</Label>
                   <Input
                     id="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Tu nombre"
+                    placeholder={t('contact.namePlaceholder')}
                     className="mt-1"
                     disabled={loading}
                   />
@@ -132,13 +133,13 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t('contact.email')}</Label>
                   <Input
                     id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="tu@email.com"
+                    placeholder={t('contact.emailPlaceholder')}
                     className="mt-1"
                     disabled={loading}
                   />
@@ -146,12 +147,12 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="message">Mensaje</Label>
+                  <Label htmlFor="message">{t('contact.message')}</Label>
                   <Textarea
                     id="message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Escribe tu mensaje..."
+                    placeholder={t('contact.messagePlaceholder')}
                     rows={5}
                     className="mt-1 resize-none"
                     disabled={loading}
@@ -165,13 +166,13 @@ export default function ContactPage() {
                   ) : (
                     <Send className="w-4 h-4" />
                   )}
-                  Enviar Mensaje
+                  {t('contact.send')}
                 </Button>
               </form>
             </div>
 
             <div className="mt-8 text-center text-muted-foreground">
-              <p>También puedes encontrarme en redes sociales o escribir directamente a:</p>
+              <p>{t('contact.socialInfo')}</p>
               <a href="mailto:contacto@danihros.com" className="text-primary hover:underline mt-2 block">
                 contacto@danihros.com
               </a>

@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Calendar, ArrowRight } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { usePublishedPosts } from '@/hooks/usePosts';
 import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { es, enUS } from 'date-fns/locale';
 
 export default function NewsPage() {
+  const { t, i18n } = useTranslation();
   const { data: posts, isLoading } = usePublishedPosts();
+  const dateLocale = i18n.language === 'es' ? es : enUS;
 
   return (
     <Layout>
@@ -14,10 +17,10 @@ export default function NewsPage() {
       <section className="py-16 md:py-24 bg-card/50">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Noticias y Blog
+            {t('news.title')}
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Mantente al día con los últimos anuncios, lanzamientos y reflexiones del autor.
+            {t('news.subtitle')}
           </p>
         </div>
       </section>
@@ -57,7 +60,13 @@ export default function NewsPage() {
                       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                         <Calendar className="w-4 h-4" />
                         {post.published_at && (
-                          <span>{format(new Date(post.published_at), "d 'de' MMMM, yyyy", { locale: es })}</span>
+                          <span>
+                            {format(
+                              new Date(post.published_at), 
+                              i18n.language === 'es' ? "d 'de' MMMM, yyyy" : "MMMM d, yyyy", 
+                              { locale: dateLocale }
+                            )}
+                          </span>
                         )}
                       </div>
                       <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-2">
@@ -69,7 +78,7 @@ export default function NewsPage() {
                         </p>
                       )}
                       <span className="inline-flex items-center gap-1 text-primary text-sm font-medium">
-                        Leer más
+                        {t('news.readMore')}
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </div>
@@ -81,10 +90,10 @@ export default function NewsPage() {
             <div className="text-center py-20">
               <Calendar className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
               <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                Próximamente
+                {t('news.comingSoon')}
               </h3>
               <p className="text-muted-foreground">
-                Las noticias y el blog estarán disponibles pronto.
+                {t('news.comingSoonDesc')}
               </p>
             </div>
           )}

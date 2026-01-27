@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Images, X } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { supabase } from '@/integrations/supabase/client';
@@ -8,6 +9,7 @@ type GalleryAlbum = Tables<'gallery_albums'>;
 type GalleryImage = Tables<'gallery_images'>;
 
 export default function GalleryPage() {
+  const { t } = useTranslation();
   const [albums, setAlbums] = useState<GalleryAlbum[]>([]);
   const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
   const [images, setImages] = useState<GalleryImage[]>([]);
@@ -61,10 +63,10 @@ export default function GalleryPage() {
       <section className="py-16 md:py-24 bg-card/50">
         <div className="container mx-auto px-4 text-center">
           <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Galería
+            {t('gallery.title')}
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explora imágenes de portadas, eventos, promociones y más.
+            {t('gallery.subtitle')}
           </p>
         </div>
       </section>
@@ -82,7 +84,7 @@ export default function GalleryPage() {
                     : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
                 }`}
               >
-                Todas
+                {t('gallery.all')}
               </button>
               {albums.map((album) => (
                 <button
@@ -136,10 +138,10 @@ export default function GalleryPage() {
             <div className="text-center py-20">
               <Images className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
               <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                Galería vacía
+                {t('gallery.empty')}
               </h3>
               <p className="text-muted-foreground">
-                Pronto habrá imágenes aquí.
+                {t('gallery.emptyDesc')}
               </p>
             </div>
           )}

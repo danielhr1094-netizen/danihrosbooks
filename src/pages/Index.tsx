@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, BookOpen, Headphones, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
@@ -9,6 +10,7 @@ import { useActiveAnnouncements } from '@/hooks/useAnnouncements';
 import heroBg from '@/assets/hero-bg.jpg';
 
 export default function Index() {
+  const { t } = useTranslation();
   const { data: featuredBooks } = useFeaturedBooks();
   const { data: allBooks } = useBooks();
   const { data: announcements } = useActiveAnnouncements(3);
@@ -35,32 +37,31 @@ export default function Index() {
           <div className="animate-fade-in">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary mb-6">
               <Sparkles className="w-4 h-4" />
-              <span className="text-sm font-medium">Mundos mágicos esperan ser descubiertos</span>
+              <span className="text-sm font-medium">{t('home.hero.badge')}</span>
             </div>
           </div>
 
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-slide-up">
-            <span className="text-foreground">Bienvenido a los</span>
+            <span className="text-foreground">{t('home.hero.titleLine1')}</span>
             <br />
-            <span className="text-gold-gradient">Cuentos de Terra</span>
+            <span className="text-gold-gradient">{t('home.hero.titleLine2')}</span>
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Historias de fantasía que transportan a mundos donde la magia es real y las aventuras nunca terminan. 
-            Por Daniel Hernandez Rosales.
+            {t('home.hero.subtitle')}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
             <Link to="/libros">
               <Button variant="hero" size="xl" className="gap-3">
                 <BookOpen className="w-5 h-5" />
-                Explorar Libros
+                {t('home.hero.exploreBooks')}
               </Button>
             </Link>
             <Link to="/audiolibros">
               <Button variant="outline" size="xl" className="gap-3">
                 <Headphones className="w-5 h-5" />
-                Audiolibros
+                {t('home.hero.audiobooks')}
               </Button>
             </Link>
           </div>
@@ -81,9 +82,9 @@ export default function Index() {
             <div className="flex items-center justify-between mb-10">
               <div>
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
-                  Último Lanzamiento
+                  {t('home.latestRelease.title')}
                 </h2>
-                <p className="text-muted-foreground">La más reciente aventura</p>
+                <p className="text-muted-foreground">{t('home.latestRelease.subtitle')}</p>
               </div>
             </div>
 
@@ -105,7 +106,7 @@ export default function Index() {
               <div className="space-y-6">
                 {latestBook.is_new && (
                   <span className="inline-block px-4 py-1 rounded-full bg-accent text-accent-foreground text-sm font-medium">
-                    Nuevo
+                    {t('home.latestRelease.new')}
                   </span>
                 )}
                 <h3 className="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -121,7 +122,7 @@ export default function Index() {
                 )}
                 <Link to={`/libros/${latestBook.id}`}>
                   <Button variant="gold" size="lg" className="gap-2">
-                    Ver Detalles
+                    {t('home.latestRelease.viewDetails')}
                     <ArrowRight className="w-5 h-5" />
                   </Button>
                 </Link>
@@ -138,13 +139,13 @@ export default function Index() {
             <div className="flex items-center justify-between mb-10">
               <div>
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
-                  Libros Destacados
+                  {t('home.featured.title')}
                 </h2>
-                <p className="text-muted-foreground">Las historias más queridas por los lectores</p>
+                <p className="text-muted-foreground">{t('home.featured.subtitle')}</p>
               </div>
               <Link to="/libros" className="hidden md:block">
                 <Button variant="outline" className="gap-2">
-                  Ver Todos
+                  {t('home.featured.viewAll')}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -159,7 +160,7 @@ export default function Index() {
             <div className="mt-10 text-center md:hidden">
               <Link to="/libros">
                 <Button variant="outline" className="gap-2">
-                  Ver Todos los Libros
+                  {t('home.featured.viewAllBooks')}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -175,13 +176,13 @@ export default function Index() {
             <div className="flex items-center justify-between mb-10">
               <div>
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
-                  Últimas Noticias
+                  {t('home.news.title')}
                 </h2>
-                <p className="text-muted-foreground">Anuncios y novedades</p>
+                <p className="text-muted-foreground">{t('home.news.subtitle')}</p>
               </div>
               <Link to="/noticias" className="hidden md:block">
                 <Button variant="outline" className="gap-2">
-                  Todas las Noticias
+                  {t('home.news.viewAll')}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -201,15 +202,14 @@ export default function Index() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5" />
         <div className="container mx-auto px-4 text-center relative">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            ¿Listo para tu próxima aventura?
+            {t('home.cta.title')}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-            Explora el catálogo completo y encuentra tu próxima historia favorita. 
-            Disponible en formato físico, eBook y audiolibro.
+            {t('home.cta.subtitle')}
           </p>
           <Link to="/libros">
             <Button variant="hero" size="xl" className="gap-3">
-              Explorar Catálogo
+              {t('home.cta.button')}
               <ArrowRight className="w-5 h-5" />
             </Button>
           </Link>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
 import { Headphones, BookOpen, Smartphone } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -12,6 +13,7 @@ interface BookCardProps {
 }
 
 export default function BookCard({ book, className }: BookCardProps) {
+  const { t } = useTranslation();
   const hasAudiobook = book.audible_url || book.itunes_url;
   const hasEbook = book.amazon_kindle_url;
   const hasPaperback = book.amazon_paperback_url;
@@ -39,12 +41,12 @@ export default function BookCard({ book, className }: BookCardProps) {
         
         <div className="absolute top-3 left-3 flex flex-wrap gap-2">
           {book.is_new && (
-            <Badge className="bg-accent text-accent-foreground border-0">Nuevo</Badge>
+            <Badge className="bg-accent text-accent-foreground border-0">{t('books.new')}</Badge>
           )}
           {hasAudiobook && (
             <Badge variant="secondary" className="gap-1">
               <Headphones className="w-3 h-3" />
-              Audio
+              {t('common.audio')}
             </Badge>
           )}
         </div>
@@ -69,7 +71,7 @@ export default function BookCard({ book, className }: BookCardProps) {
           {hasPaperback && (
             <div className="flex items-center gap-1 text-xs">
               <BookOpen className="w-3.5 h-3.5" />
-              <span>Papel</span>
+              <span>{t('common.paper')}</span>
             </div>
           )}
           {hasEbook && (
@@ -81,7 +83,7 @@ export default function BookCard({ book, className }: BookCardProps) {
           {hasAudiobook && (
             <div className="flex items-center gap-1 text-xs">
               <Headphones className="w-3.5 h-3.5" />
-              <span>Audio</span>
+              <span>{t('common.audio')}</span>
             </div>
           )}
         </div>

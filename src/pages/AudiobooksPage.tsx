@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Headphones, ExternalLink } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
@@ -6,6 +7,7 @@ import { useAudiobooks } from '@/hooks/useBooks';
 import { Link } from 'react-router-dom';
 
 export default function AudiobooksPage() {
+  const { t } = useTranslation();
   const { data: audiobooks, isLoading } = useAudiobooks();
 
   return (
@@ -15,14 +17,13 @@ export default function AudiobooksPage() {
         <div className="container mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary mb-6">
             <Headphones className="w-4 h-4" />
-            <span className="text-sm font-medium">Escucha en cualquier lugar</span>
+            <span className="text-sm font-medium">{t('audiobooks.badge')}</span>
           </div>
           <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Audiolibros
+            {t('audiobooks.title')}
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Disfruta de las historias de fantasía mientras caminas, conduces o te relajas. 
-            Disponibles en Audible, Amazon e iTunes.
+            {t('audiobooks.subtitle')}
           </p>
         </div>
       </section>
@@ -80,7 +81,7 @@ export default function AudiobooksPage() {
                         </div>
                         <Badge variant="secondary" className="gap-1 flex-shrink-0">
                           <Headphones className="w-3 h-3" />
-                          Audio
+                          {t('common.audio')}
                         </Badge>
                       </div>
 
@@ -118,10 +119,10 @@ export default function AudiobooksPage() {
             <div className="text-center py-20">
               <Headphones className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
               <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                Próximamente
+                {t('audiobooks.comingSoon')}
               </h3>
               <p className="text-muted-foreground">
-                Los audiolibros estarán disponibles pronto. ¡Mantente atento!
+                {t('audiobooks.comingSoonDesc')}
               </p>
             </div>
           )}

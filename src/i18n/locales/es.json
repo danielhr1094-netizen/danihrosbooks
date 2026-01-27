@@ -20,13 +20,55 @@
   },
   "home": {
     "hero": {
-      "title": "Bienvenido al mundo de Danihros",
-      "subtitle": "Descubre historias épicas de fantasía que te transportarán a mundos mágicos"
+      "badge": "Mundos mágicos esperan ser descubiertos",
+      "titleLine1": "Bienvenido a los",
+      "titleLine2": "Cuentos de Terra",
+      "subtitle": "Historias de fantasía que transportan a mundos donde la magia es real y las aventuras nunca terminan. Por Daniel Hernandez Rosales.",
+      "exploreBooks": "Explorar Libros",
+      "audiobooks": "Audiolibros"
+    },
+    "latestRelease": {
+      "title": "Último Lanzamiento",
+      "subtitle": "La más reciente aventura",
+      "new": "Nuevo",
+      "viewDetails": "Ver Detalles"
+    },
+    "featured": {
+      "title": "Libros Destacados",
+      "subtitle": "Las historias más queridas por los lectores",
+      "viewAll": "Ver Todos",
+      "viewAllBooks": "Ver Todos los Libros"
+    },
+    "news": {
+      "title": "Últimas Noticias",
+      "subtitle": "Anuncios y novedades",
+      "viewAll": "Todas las Noticias"
+    },
+    "cta": {
+      "title": "¿Listo para tu próxima aventura?",
+      "subtitle": "Explora el catálogo completo y encuentra tu próxima historia favorita. Disponible en formato físico, eBook y audiolibro.",
+      "button": "Explorar Catálogo"
     }
   },
   "books": {
-    "title": "Libros",
-    "subtitle": "Explora la colección completa de libros de Danihros",
+    "title": "Catálogo de Libros",
+    "subtitle": "Explora todas las historias de fantasía. Disponibles en papel, digital y audio.",
+    "searchPlaceholder": "Buscar por título, saga...",
+    "allSeries": "Todas las Sagas",
+    "allLanguages": "Todos los Idiomas",
+    "allFormats": "Todos los Formatos",
+    "paperback": "Papel",
+    "ebook": "eBook",
+    "audiobook": "Audiolibro",
+    "clear": "Limpiar",
+    "clearFilters": "Limpiar Filtros",
+    "series": "Saga",
+    "language": "Idioma",
+    "format": "Formato",
+    "booksFound": "{count} libro encontrado",
+    "booksFoundPlural": "{count} libros encontrados",
+    "noBooks": "No se encontraron libros",
+    "tryDifferentFilters": "Prueba con diferentes filtros o términos de búsqueda",
     "featured": "Destacado",
     "new": "Nuevo",
     "viewDetails": "Ver detalles",
@@ -35,11 +77,17 @@
   },
   "audiobooks": {
     "title": "Audiolibros",
-    "subtitle": "Escucha las historias cobrar vida"
+    "badge": "Escucha en cualquier lugar",
+    "subtitle": "Disfruta de las historias de fantasía mientras caminas, conduces o te relajas. Disponibles en Audible, Amazon e iTunes.",
+    "comingSoon": "Próximamente",
+    "comingSoonDesc": "Los audiolibros estarán disponibles pronto. ¡Mantente atento!"
   },
   "gallery": {
     "title": "Galería",
-    "subtitle": "Imágenes e ilustraciones del universo de Danihros"
+    "subtitle": "Explora imágenes de portadas, eventos, promociones y más.",
+    "all": "Todas",
+    "empty": "Galería vacía",
+    "emptyDesc": "Pronto habrá imágenes aquí."
   },
   "news": {
     "title": "Noticias y Blog",
@@ -53,6 +101,7 @@
   "about": {
     "title": "Sobre el Autor",
     "subtitle": "Conoce a Daniel Hernandez Rosales - Danihros",
+    "authorName": "Daniel Hernandez Rosales",
     "bio1": "Soy un escritor independiente apasionado por crear mundos de fantasía que transportan a los lectores a lugares donde la magia es real y las aventuras nunca terminan. Desde pequeño, las historias han sido mi refugio y mi pasión.",
     "bio2": "Mi objetivo es escribir libros que no solo entretengan, sino que también inspiren y dejen una huella en el corazón de quienes los leen. Cada historia que creo es una invitación a explorar lo desconocido, a enfrentar desafíos y a descubrir la magia que existe en todos nosotros.",
     "bio3": "Cuando no estoy escribiendo, disfruto de la lectura, explorar nuevos lugares y pasar tiempo con mi familia. Creo firmemente en el poder de las historias para cambiar vidas y construir puentes entre personas de todo el mundo.",
@@ -65,18 +114,44 @@
   },
   "contact": {
     "title": "Contacto",
-    "subtitle": "¿Tienes alguna pregunta o comentario? ¡Me encantaría saber de ti!",
+    "subtitle": "¿Tienes preguntas, sugerencias o simplemente quieres decir hola? Me encantaría saber de ti.",
     "name": "Nombre",
-    "email": "Correo electrónico",
+    "namePlaceholder": "Tu nombre",
+    "email": "Email",
+    "emailPlaceholder": "tu@email.com",
     "message": "Mensaje",
-    "send": "Enviar mensaje",
+    "messagePlaceholder": "Escribe tu mensaje...",
+    "send": "Enviar Mensaje",
     "sending": "Enviando...",
     "success": "¡Mensaje enviado!",
     "successDesc": "Gracias por tu mensaje. Te responderé pronto.",
     "error": "Error",
-    "errorDesc": "Hubo un error al enviar tu mensaje. Por favor intenta de nuevo."
+    "errorDesc": "No se pudo enviar el mensaje. Intenta de nuevo.",
+    "rateLimitTitle": "Límite alcanzado",
+    "rateLimitDesc": "Has enviado demasiados mensajes. Intenta más tarde.",
+    "socialInfo": "También puedes encontrarme en redes sociales o escribir directamente a:",
+    "validation": {
+      "nameRequired": "El nombre es requerido",
+      "emailInvalid": "Email inválido",
+      "messageRequired": "El mensaje es requerido"
+    }
+  },
+  "bookDetail": {
+    "backToCatalog": "Volver al catálogo",
+    "notFound": "Libro no encontrado",
+    "new": "Nuevo",
+    "audiobookAvailable": "Audiolibro disponible",
+    "featured": "Destacado",
+    "synopsis": "Sinopsis",
+    "publication": "Publicación",
+    "pages": "Páginas",
+    "language": "Idioma",
+    "buyNow": "Comprar Ahora"
   },
   "footer": {
+    "description": "Daniel Hernandez Rosales - Autor de fantasía independiente. Creador de \"Los Cuentos Perdidos de Terra\" y otras historias que transportan a mundos mágicos.",
+    "links": "Enlaces",
+    "followMe": "Sígueme",
     "rights": "Todos los derechos reservados",
     "createdWith": "Creado con"
   },
@@ -84,5 +159,9 @@
     "title": "404",
     "message": "¡Ups! Página no encontrada",
     "backHome": "Volver al inicio"
+  },
+  "common": {
+    "paper": "Papel",
+    "audio": "Audio"
   }
 }

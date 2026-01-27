@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Book, Instagram, Twitter, Facebook, Mail } from 'lucide-react';
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-card border-t border-border/50">
       <div className="container mx-auto px-4 py-12">
@@ -15,26 +18,25 @@ export default function Footer() {
               <span className="font-display text-2xl font-semibold">Danihros</span>
             </Link>
             <p className="text-muted-foreground max-w-md">
-              Daniel Hernandez Rosales - Autor de fantasía independiente. 
-              Creador de "Los Cuentos Perdidos de Terra" y otras historias que transportan a mundos mágicos.
+              {t('footer.description')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display text-lg font-semibold text-primary mb-4">Enlaces</h4>
+            <h4 className="font-display text-lg font-semibold text-primary mb-4">{t('footer.links')}</h4>
             <ul className="space-y-2">
-              <li><Link to="/libros" className="text-muted-foreground hover:text-foreground transition-colors">Libros</Link></li>
-              <li><Link to="/audiolibros" className="text-muted-foreground hover:text-foreground transition-colors">Audiolibros</Link></li>
-              <li><Link to="/galeria" className="text-muted-foreground hover:text-foreground transition-colors">Galería</Link></li>
-              <li><Link to="/noticias" className="text-muted-foreground hover:text-foreground transition-colors">Noticias</Link></li>
-              <li><Link to="/contacto" className="text-muted-foreground hover:text-foreground transition-colors">Contacto</Link></li>
+              <li><Link to="/libros" className="text-muted-foreground hover:text-foreground transition-colors">{t('nav.books')}</Link></li>
+              <li><Link to="/audiolibros" className="text-muted-foreground hover:text-foreground transition-colors">{t('nav.audiobooks')}</Link></li>
+              <li><Link to="/galeria" className="text-muted-foreground hover:text-foreground transition-colors">{t('nav.gallery')}</Link></li>
+              <li><Link to="/noticias" className="text-muted-foreground hover:text-foreground transition-colors">{t('nav.news')}</Link></li>
+              <li><Link to="/contacto" className="text-muted-foreground hover:text-foreground transition-colors">{t('nav.contact')}</Link></li>
             </ul>
           </div>
 
           {/* Social */}
           <div>
-            <h4 className="font-display text-lg font-semibold text-primary mb-4">Sígueme</h4>
+            <h4 className="font-display text-lg font-semibold text-primary mb-4">{t('footer.followMe')}</h4>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all">
                 <Instagram className="w-5 h-5" />
@@ -53,7 +55,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border/50 mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Danihros - Daniel Hernandez Rosales. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Danihros - Daniel Hernandez Rosales. {t('footer.rights')}.</p>
         </div>
       </div>
     </footer>

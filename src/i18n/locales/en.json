@@ -20,13 +20,55 @@
   },
   "home": {
     "hero": {
-      "title": "Welcome to the world of Danihros",
-      "subtitle": "Discover epic fantasy stories that will transport you to magical worlds"
+      "badge": "Magical worlds await to be discovered",
+      "titleLine1": "Welcome to the",
+      "titleLine2": "Tales of Terra",
+      "subtitle": "Fantasy stories that transport you to worlds where magic is real and adventures never end. By Daniel Hernandez Rosales.",
+      "exploreBooks": "Explore Books",
+      "audiobooks": "Audiobooks"
+    },
+    "latestRelease": {
+      "title": "Latest Release",
+      "subtitle": "The most recent adventure",
+      "new": "New",
+      "viewDetails": "View Details"
+    },
+    "featured": {
+      "title": "Featured Books",
+      "subtitle": "The most beloved stories by readers",
+      "viewAll": "View All",
+      "viewAllBooks": "View All Books"
+    },
+    "news": {
+      "title": "Latest News",
+      "subtitle": "Announcements and updates",
+      "viewAll": "All News"
+    },
+    "cta": {
+      "title": "Ready for your next adventure?",
+      "subtitle": "Explore the complete catalog and find your next favorite story. Available in paperback, eBook, and audiobook.",
+      "button": "Explore Catalog"
     }
   },
   "books": {
-    "title": "Books",
-    "subtitle": "Explore the complete collection of books by Danihros",
+    "title": "Book Catalog",
+    "subtitle": "Explore all fantasy stories. Available in paper, digital, and audio.",
+    "searchPlaceholder": "Search by title, saga...",
+    "allSeries": "All Series",
+    "allLanguages": "All Languages",
+    "allFormats": "All Formats",
+    "paperback": "Paperback",
+    "ebook": "eBook",
+    "audiobook": "Audiobook",
+    "clear": "Clear",
+    "clearFilters": "Clear Filters",
+    "series": "Series",
+    "language": "Language",
+    "format": "Format",
+    "booksFound": "{count} book found",
+    "booksFoundPlural": "{count} books found",
+    "noBooks": "No books found",
+    "tryDifferentFilters": "Try different filters or search terms",
     "featured": "Featured",
     "new": "New",
     "viewDetails": "View details",
@@ -35,11 +77,17 @@
   },
   "audiobooks": {
     "title": "Audiobooks",
-    "subtitle": "Listen to the stories come to life"
+    "badge": "Listen anywhere",
+    "subtitle": "Enjoy fantasy stories while walking, driving, or relaxing. Available on Audible, Amazon, and iTunes.",
+    "comingSoon": "Coming Soon",
+    "comingSoonDesc": "Audiobooks will be available soon. Stay tuned!"
   },
   "gallery": {
     "title": "Gallery",
-    "subtitle": "Images and illustrations from the Danihros universe"
+    "subtitle": "Explore images of covers, events, promotions, and more.",
+    "all": "All",
+    "empty": "Empty Gallery",
+    "emptyDesc": "Images coming soon."
   },
   "news": {
     "title": "News & Blog",
@@ -53,6 +101,7 @@
   "about": {
     "title": "About the Author",
     "subtitle": "Meet Daniel Hernandez Rosales - Danihros",
+    "authorName": "Daniel Hernandez Rosales",
     "bio1": "I am an independent writer passionate about creating fantasy worlds that transport readers to places where magic is real and adventures never end. Since I was a child, stories have been my refuge and my passion.",
     "bio2": "My goal is to write books that not only entertain but also inspire and leave a mark on the hearts of those who read them. Every story I create is an invitation to explore the unknown, face challenges, and discover the magic that exists in all of us.",
     "bio3": "When I'm not writing, I enjoy reading, exploring new places, and spending time with my family. I firmly believe in the power of stories to change lives and build bridges between people from all over the world.",
@@ -65,18 +114,44 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Have a question or comment? I'd love to hear from you!",
+    "subtitle": "Have questions, suggestions, or just want to say hello? I'd love to hear from you.",
     "name": "Name",
+    "namePlaceholder": "Your name",
     "email": "Email",
+    "emailPlaceholder": "your@email.com",
     "message": "Message",
-    "send": "Send message",
+    "messagePlaceholder": "Write your message...",
+    "send": "Send Message",
     "sending": "Sending...",
     "success": "Message sent!",
     "successDesc": "Thank you for your message. I'll get back to you soon.",
     "error": "Error",
-    "errorDesc": "There was an error sending your message. Please try again."
+    "errorDesc": "Could not send the message. Please try again.",
+    "rateLimitTitle": "Limit reached",
+    "rateLimitDesc": "You've sent too many messages. Please try later.",
+    "socialInfo": "You can also find me on social media or write directly to:",
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailInvalid": "Invalid email",
+      "messageRequired": "Message is required"
+    }
+  },
+  "bookDetail": {
+    "backToCatalog": "Back to catalog",
+    "notFound": "Book not found",
+    "new": "New",
+    "audiobookAvailable": "Audiobook available",
+    "featured": "Featured",
+    "synopsis": "Synopsis",
+    "publication": "Publication",
+    "pages": "Pages",
+    "language": "Language",
+    "buyNow": "Buy Now"
   },
   "footer": {
+    "description": "Daniel Hernandez Rosales - Independent fantasy author. Creator of \"The Lost Tales of Terra\" and other stories that transport you to magical worlds.",
+    "links": "Links",
+    "followMe": "Follow Me",
     "rights": "All rights reserved",
     "createdWith": "Created with"
   },
@@ -84,5 +159,9 @@
     "title": "404",
     "message": "Oops! Page not found",
     "backHome": "Return to Home"
+  },
+  "common": {
+    "paper": "Paper",
+    "audio": "Audio"
   }
 }

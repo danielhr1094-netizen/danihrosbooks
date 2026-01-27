@@ -1,8 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { Tables } from '@/integrations/supabase/types';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar } from 'lucide-react';
 import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { es, enUS } from 'date-fns/locale';
 
 type Announcement = Tables<'announcements'>;
 
@@ -11,6 +12,9 @@ interface AnnouncementCardProps {
 }
 
 export default function AnnouncementCard({ announcement }: AnnouncementCardProps) {
+  const { i18n } = useTranslation();
+  const dateLocale = i18n.language === 'es' ? es : enUS;
+
   return (
     <div className="group bg-card rounded-xl overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-300">
       {announcement.image_url && (
@@ -27,7 +31,13 @@ export default function AnnouncementCard({ announcement }: AnnouncementCardProps
         {announcement.start_at && (
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
             <Calendar className="w-4 h-4" />
-            <span>{format(new Date(announcement.start_at), "d 'de' MMMM, yyyy", { locale: es })}</span>
+            <span>
+              {format(
+                new Date(announcement.start_at), 
+                i18n.language === 'es' ? "d 'de' MMMM, yyyy" : "MMMM d, yyyy", 
+                { locale: dateLocale }
+              )}
+            </span>
           </div>
         )}
 

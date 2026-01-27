@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import { User, Book, Sparkles } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 
 export default function AboutPage() {
+  const { t } = useTranslation();
+
   return (
     <Layout>
       {/* Hero */}
@@ -9,10 +12,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Sobre el Autor
+              {t('about.title')}
             </h1>
             <p className="text-muted-foreground text-lg">
-              Conoce a Daniel Hernandez Rosales - Danihros
+              {t('about.subtitle')}
             </p>
           </div>
         </div>
@@ -31,24 +34,16 @@ export default function AboutPage() {
               {/* Bio */}
               <div className="md:col-span-2 space-y-6">
                 <h2 className="font-display text-3xl font-bold text-foreground">
-                  Daniel Hernandez Rosales
+                  {t('about.authorName')}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Soy un escritor independiente apasionado por crear mundos de fantasía 
-                  que transportan a los lectores a lugares donde la magia es real y las 
-                  aventuras nunca terminan. Desde pequeño, las historias han sido mi refugio 
-                  y mi pasión.
+                  {t('about.bio1')}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Mi objetivo es escribir libros que no solo entretengan, sino que también 
-                  inspiren y dejen una huella en el corazón de quienes los leen. Cada historia 
-                  que creo es una invitación a explorar lo desconocido, a enfrentar desafíos 
-                  y a descubrir la magia que existe en todos nosotros.
+                  {t('about.bio2')}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Cuando no estoy escribiendo, disfruto de la lectura, explorar nuevos lugares 
-                  y pasar tiempo con mi familia. Creo firmemente en el poder de las historias 
-                  para cambiar vidas y construir puentes entre personas de todo el mundo.
+                  {t('about.bio3')}
                 </p>
               </div>
             </div>
@@ -65,25 +60,20 @@ export default function AboutPage() {
                 <Book className="w-6 h-6 text-primary" />
               </div>
               <h2 className="font-display text-2xl font-bold text-foreground">
-                La Saga: Los Cuentos Perdidos de Terra
+                {t('about.sagaTitle')}
               </h2>
             </div>
 
             <div className="bg-background rounded-xl border border-border/50 p-6 md:p-8">
               <p className="text-muted-foreground leading-relaxed mb-6">
-                "Los Cuentos Perdidos de Terra" es mi saga principal, una serie épica de 
-                fantasía ambientada en un mundo donde antiguos secretos esperan ser 
-                descubiertos y donde el destino de civilizaciones enteras pende de un hilo.
+                {t('about.sagaDesc1')}
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                En Terra, un reino olvidado por el tiempo, los medallones mágicos guardan 
-                poderes ancestrales y solo aquellos con el corazón puro pueden desbloquear 
-                su verdadero potencial. Sigue a nuestros héroes mientras navegan por 
-                traiciones, amistades inesperadas y batallas que definirán el futuro.
+                {t('about.sagaDesc2')}
               </p>
               <div className="flex items-center gap-2 text-primary">
                 <Sparkles className="w-5 h-5" />
-                <span className="font-medium">Varios libros disponibles - ¡Más historias por venir!</span>
+                <span className="font-medium">{t('about.sagaAvailable')}</span>
               </div>
             </div>
           </div>
@@ -95,13 +85,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-display text-2xl font-bold text-foreground mb-6">
-              Mi Misión
+              {t('about.missionTitle')}
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              "Crear historias que trasciendan las páginas, que vivan en la imaginación 
-              de los lectores y que demuestren que la magia existe en el acto mismo de 
-              leer. Quiero que cada libro sea una puerta a un mundo donde todo es posible 
-              y donde el lector pueda encontrar un pedazo de sí mismo."
+              {t('about.missionQuote')}
             </p>
             <p className="text-primary font-display text-xl mt-6 italic">
               — Danihros

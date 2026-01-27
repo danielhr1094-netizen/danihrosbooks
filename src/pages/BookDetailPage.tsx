@@ -1,15 +1,18 @@
 import { useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, BookOpen, Smartphone, Headphones, Calendar, FileText, Globe, ExternalLink } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useBook } from '@/hooks/useBooks';
 import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { es, enUS } from 'date-fns/locale';
 
 export default function BookDetailPage() {
+  const { t, i18n } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading, error } = useBook(id || '');
+  const dateLocale = i18n.language === 'es' ? es : enUS;
 
   if (isLoading) {
     return (
@@ -36,12 +39,12 @@ export default function BookDetailPage() {
       <Layout>
         <div className="container mx-auto px-4 py-20 text-center">
           <h1 className="font-display text-3xl font-bold text-foreground mb-4">
-            Libro no encontrado
+            {t('bookDetail.notFound')}
           </h1>
           <Link to="/libros">
             <Button variant="outline">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Volver al catálogo
+              {t('bookDetail.backToCatalog')}
             </Button>
           </Link>
         </div>
@@ -59,7 +62,7 @@ export default function BookDetailPage() {
         {/* Back Link */}
         <Link to="/libros" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8">
           <ArrowLeft className="w-4 h-4" />
-          Volver al catálogo
+          {t('bookDetail.backToCatalog')}
         </Link>
 
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
@@ -83,16 +86,16 @@ export default function BookDetailPage() {
             {/* Badges */}
             <div className="flex flex-wrap gap-2">
               {book.is_new && (
-                <Badge className="bg-accent text-accent-foreground">Nuevo</Badge>
+                <Badge className="bg-accent text-accent-foreground">{t('bookDetail.new')}</Badge>
               )}
               {hasAudiobook && (
                 <Badge variant="secondary" className="gap-1">
                   <Headphones className="w-3 h-3" />
-                  Audiolibro disponible
+                  {t('bookDetail.audiobookAvailable')}
                 </Badge>
               )}
               {book.featured && (
-                <Badge variant="outline" className="border-primary text-primary">Destacado</Badge>
+                <Badge variant="outline" className="border-primary text-primary">{t('bookDetail.featured')}</Badge>
               )}
             </div>
 
@@ -113,7 +116,7 @@ export default function BookDetailPage() {
             {/* Synopsis */}
             {book.synopsis && (
               <div>
-                <h2 className="font-display text-xl font-semibold text-foreground mb-3">Sinopsis</h2>
+                <h2 className="font-display text-xl font-semibold text-foreground mb-3">{t('bookDetail.synopsis')}</h2>
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                   {book.synopsis}
                 </p>
@@ -126,8 +129,14 @@ export default function BookDetailPage() {
                 <div className="flex items-center gap-3">
                   <Calendar className="w-5 h-5 text-primary" />
                   <div>
-                    <p className="text-sm text-muted-foreground">Publicación</p>
-                    <p className="text-foreground">{format(new Date(book.publish_date), "d 'de' MMMM, yyyy", { locale: es })}</p>
+                    <p className="text-sm text-muted-foreground">{t('bookDetail.publication')}</p>
+                    <p className="text-foreground">
+                      {format(
+                        new Date(book.publish_date), 
+                        i18n.language === 'es' ? "d 'de' MMMM, yyyy" : "MMMM d, yyyy", 
+                        { locale: dateLocale }
+                      )}
+                    </p>
                   </div>
                 </div>
               )}
@@ -135,7 +144,7 @@ export default function BookDetailPage() {
                 <div className="flex items-center gap-3">
                   <FileText className="w-5 h-5 text-primary" />
                   <div>
-                    <p className="text-sm text-muted-foreground">Páginas</p>
+                    <p className="text-sm text-muted-foreground">{t('bookDetail.pages')}</p>
                     <p className="text-foreground">{book.pages}</p>
                   </div>
                 </div>
@@ -144,7 +153,7 @@ export default function BookDetailPage() {
                 <div className="flex items-center gap-3">
                   <Globe className="w-5 h-5 text-primary" />
                   <div>
-                    <p className="text-sm text-muted-foreground">Idioma</p>
+                    <p className="text-sm text-muted-foreground">{t('bookDetail.language')}</p>
                     <p className="text-foreground">{book.language}</p>
                   </div>
                 </div>
@@ -153,7 +162,7 @@ export default function BookDetailPage() {
 
             {/* Purchase Links */}
             <div>
-              <h2 className="font-display text-xl font-semibold text-foreground mb-4">Comprar Ahora</h2>
+              <h2 className="font-display text-xl font-semibold text-foreground mb-4">{t('bookDetail.buyNow')}</h2>
               <div className="grid sm:grid-cols-2 gap-3">
                 {hasPaperback && (
                   <Button asChild variant="gold" size="lg" className="w-full gap-2">

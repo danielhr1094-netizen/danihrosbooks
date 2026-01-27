@@ -1,24 +1,28 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Menu, X, Book, User, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
+import LanguageToggle from '@/components/LanguageToggle';
 
-const navLinks = [
-  { href: '/', label: 'Inicio' },
-  { href: '/libros', label: 'Libros' },
-  { href: '/audiolibros', label: 'Audiolibros' },
-  { href: '/galeria', label: 'Galería' },
-  { href: '/noticias', label: 'Noticias' },
-  { href: '/autor', label: 'Sobre el Autor' },
-  { href: '/contacto', label: 'Contacto' },
+const getNavLinks = (t: (key: string) => string) => [
+  { href: '/', label: t('nav.home') },
+  { href: '/libros', label: t('nav.books') },
+  { href: '/audiolibros', label: t('nav.audiobooks') },
+  { href: '/galeria', label: t('nav.gallery') },
+  { href: '/noticias', label: t('nav.news') },
+  { href: '/autor', label: t('nav.about') },
+  { href: '/contacto', label: t('nav.contact') },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { user, isAdmin, signOut } = useAuth();
+  const { t } = useTranslation();
+  const navLinks = getNavLinks(t);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-border/30">
@@ -52,26 +56,27 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Auth & Admin */}
+          {/* Language Toggle & Auth */}
           <div className="hidden lg:flex items-center gap-3">
+            <LanguageToggle />
             {isAdmin && (
               <Link to="/admin">
                 <Button variant="outline" size="sm" className="gap-2">
                   <Settings className="w-4 h-4" />
-                  Admin
+                  {t('nav.admin')}
                 </Button>
               </Link>
             )}
             {user ? (
               <Button variant="ghost" size="sm" onClick={signOut} className="gap-2">
                 <User className="w-4 h-4" />
-                Salir
+                {t('nav.logout')}
               </Button>
             ) : (
               <Link to="/auth">
                 <Button variant="ghost" size="sm" className="gap-2">
                   <User className="w-4 h-4" />
-                  Entrar
+                  {t('nav.login')}
                 </Button>
               </Link>
             )}
@@ -107,13 +112,16 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="pt-4 border-t border-border/30 space-y-2">
+              <div className="px-4 py-2">
+                <LanguageToggle />
+              </div>
               {isAdmin && (
                 <Link
                   to="/admin"
                   onClick={() => setIsOpen(false)}
                   className="block px-4 py-3 rounded-lg text-primary hover:bg-primary/10 font-medium"
                 >
-                  Panel de Admin
+                  {t('nav.adminPanel')}
                 </Link>
               )}
               {user ? (
@@ -121,7 +129,7 @@ export default function Navbar() {
                   onClick={() => { signOut(); setIsOpen(false); }}
                   className="block w-full text-left px-4 py-3 rounded-lg text-foreground/70 hover:bg-secondary/50"
                 >
-                  Cerrar Sesión
+                  {t('nav.closeSession')}
                 </button>
               ) : (
                 <Link
@@ -129,7 +137,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="block px-4 py-3 rounded-lg text-foreground/70 hover:bg-secondary/50"
                 >
-                  Iniciar Sesión
+                  {t('nav.startSession')}
                 </Link>
               )}
             </div>

@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "Home",
+    "books": "Books",
+    "audiobooks": "Audiobooks",
+    "gallery": "Gallery",
+    "news": "News",
+    "about": "About the Author",
+    "contact": "Contact",
+    "admin": "Admin",
+    "logout": "Logout",
+    "login": "Login",
+    "adminPanel": "Admin Panel",
+    "closeSession": "Log Out",
+    "startSession": "Log In"
+  },
+  "language": {
+    "switchToEnglish": "Read in English",
+    "switchToSpanish": "Leer en Español"
+  },
+  "home": {
+    "hero": {
+      "title": "Welcome to the world of Danihros",
+      "subtitle": "Discover epic fantasy stories that will transport you to magical worlds"
+    }
+  },
+  "books": {
+    "title": "Books",
+    "subtitle": "Explore the complete collection of books by Danihros",
+    "featured": "Featured",
+    "new": "New",
+    "viewDetails": "View details",
+    "buyNow": "Buy now",
+    "formats": "Available formats"
+  },
+  "audiobooks": {
+    "title": "Audiobooks",
+    "subtitle": "Listen to the stories come to life"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "subtitle": "Images and illustrations from the Danihros universe"
+  },
+  "news": {
+    "title": "News & Blog",
+    "subtitle": "Stay up to date with the latest announcements, releases, and reflections from the author.",
+    "readMore": "Read more",
+    "comingSoon": "Coming Soon",
+    "comingSoonDesc": "News and blog will be available soon.",
+    "backToNews": "Back to news",
+    "articleNotFound": "Article not found"
+  },
+  "about": {
+    "title": "About the Author",
+    "subtitle": "Meet Daniel Hernandez Rosales - Danihros",
+    "bio1": "I am an independent writer passionate about creating fantasy worlds that transport readers to places where magic is real and adventures never end. Since I was a child, stories have been my refuge and my passion.",
+    "bio2": "My goal is to write books that not only entertain but also inspire and leave a mark on the hearts of those who read them. Every story I create is an invitation to explore the unknown, face challenges, and discover the magic that exists in all of us.",
+    "bio3": "When I'm not writing, I enjoy reading, exploring new places, and spending time with my family. I firmly believe in the power of stories to change lives and build bridges between people from all over the world.",
+    "sagaTitle": "The Saga: The Lost Tales of Terra",
+    "sagaDesc1": "\"The Lost Tales of Terra\" is my main saga, an epic fantasy series set in a world where ancient secrets await discovery and the fate of entire civilizations hangs in the balance.",
+    "sagaDesc2": "In Terra, a kingdom forgotten by time, magical medallions hold ancestral powers and only those with pure hearts can unlock their true potential. Follow our heroes as they navigate betrayals, unexpected friendships, and battles that will define the future.",
+    "sagaAvailable": "Several books available - More stories to come!",
+    "missionTitle": "My Mission",
+    "missionQuote": "\"To create stories that transcend the pages, that live in the imagination of readers and prove that magic exists in the very act of reading. I want each book to be a door to a world where everything is possible and where the reader can find a piece of themselves.\""
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Have a question or comment? I'd love to hear from you!",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent!",
+    "successDesc": "Thank you for your message. I'll get back to you soon.",
+    "error": "Error",
+    "errorDesc": "There was an error sending your message. Please try again."
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "createdWith": "Created with"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "backHome": "Return to Home"
+  }
+}

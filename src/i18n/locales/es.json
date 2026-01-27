@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "books": "Libros",
+    "audiobooks": "Audiolibros",
+    "gallery": "Galería",
+    "news": "Noticias",
+    "about": "Sobre el Autor",
+    "contact": "Contacto",
+    "admin": "Admin",
+    "logout": "Salir",
+    "login": "Entrar",
+    "adminPanel": "Panel de Admin",
+    "closeSession": "Cerrar Sesión",
+    "startSession": "Iniciar Sesión"
+  },
+  "language": {
+    "switchToEnglish": "Read in English",
+    "switchToSpanish": "Leer en Español"
+  },
+  "home": {
+    "hero": {
+      "title": "Bienvenido al mundo de Danihros",
+      "subtitle": "Descubre historias épicas de fantasía que te transportarán a mundos mágicos"
+    }
+  },
+  "books": {
+    "title": "Libros",
+    "subtitle": "Explora la colección completa de libros de Danihros",
+    "featured": "Destacado",
+    "new": "Nuevo",
+    "viewDetails": "Ver detalles",
+    "buyNow": "Comprar ahora",
+    "formats": "Formatos disponibles"
+  },
+  "audiobooks": {
+    "title": "Audiolibros",
+    "subtitle": "Escucha las historias cobrar vida"
+  },
+  "gallery": {
+    "title": "Galería",
+    "subtitle": "Imágenes e ilustraciones del universo de Danihros"
+  },
+  "news": {
+    "title": "Noticias y Blog",
+    "subtitle": "Mantente al día con los últimos anuncios, lanzamientos y reflexiones del autor.",
+    "readMore": "Leer más",
+    "comingSoon": "Próximamente",
+    "comingSoonDesc": "Las noticias y el blog estarán disponibles pronto.",
+    "backToNews": "Volver a noticias",
+    "articleNotFound": "Artículo no encontrado"
+  },
+  "about": {
+    "title": "Sobre el Autor",
+    "subtitle": "Conoce a Daniel Hernandez Rosales - Danihros",
+    "bio1": "Soy un escritor independiente apasionado por crear mundos de fantasía que transportan a los lectores a lugares donde la magia es real y las aventuras nunca terminan. Desde pequeño, las historias han sido mi refugio y mi pasión.",
+    "bio2": "Mi objetivo es escribir libros que no solo entretengan, sino que también inspiren y dejen una huella en el corazón de quienes los leen. Cada historia que creo es una invitación a explorar lo desconocido, a enfrentar desafíos y a descubrir la magia que existe en todos nosotros.",
+    "bio3": "Cuando no estoy escribiendo, disfruto de la lectura, explorar nuevos lugares y pasar tiempo con mi familia. Creo firmemente en el poder de las historias para cambiar vidas y construir puentes entre personas de todo el mundo.",
+    "sagaTitle": "La Saga: Los Cuentos Perdidos de Terra",
+    "sagaDesc1": "\"Los Cuentos Perdidos de Terra\" es mi saga principal, una serie épica de fantasía ambientada en un mundo donde antiguos secretos esperan ser descubiertos y donde el destino de civilizaciones enteras pende de un hilo.",
+    "sagaDesc2": "En Terra, un reino olvidado por el tiempo, los medallones mágicos guardan poderes ancestrales y solo aquellos con el corazón puro pueden desbloquear su verdadero potencial. Sigue a nuestros héroes mientras navegan por traiciones, amistades inesperadas y batallas que definirán el futuro.",
+    "sagaAvailable": "Varios libros disponibles - ¡Más historias por venir!",
+    "missionTitle": "Mi Misión",
+    "missionQuote": "\"Crear historias que trasciendan las páginas, que vivan en la imaginación de los lectores y que demuestren que la magia existe en el acto mismo de leer. Quiero que cada libro sea una puerta a un mundo donde todo es posible y donde el lector pueda encontrar un pedazo de sí mismo.\""
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes alguna pregunta o comentario? ¡Me encantaría saber de ti!",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "send": "Enviar mensaje",
+    "sending": "Enviando...",
+    "success": "¡Mensaje enviado!",
+    "successDesc": "Gracias por tu mensaje. Te responderé pronto.",
+    "error": "Error",
+    "errorDesc": "Hubo un error al enviar tu mensaje. Por favor intenta de nuevo."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "createdWith": "Creado con"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "¡Ups! Página no encontrada",
+    "backHome": "Volver al inicio"
+  }
+}

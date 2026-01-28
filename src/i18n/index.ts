@@ -5,6 +5,11 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import es from './locales/es.json';
 import en from './locales/en.json';
 
+// Function to update HTML lang attribute
+const updateHtmlLang = (lang: string) => {
+  document.documentElement.lang = lang;
+};
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -22,5 +27,13 @@ i18n
       caches: ['localStorage']
     }
   });
+
+// Set initial lang attribute
+updateHtmlLang(i18n.language || 'es');
+
+// Update lang attribute on language change
+i18n.on('languageChanged', (lang) => {
+  updateHtmlLang(lang);
+});
 
 export default i18n;

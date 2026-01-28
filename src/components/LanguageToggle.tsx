@@ -10,7 +10,10 @@ export default function LanguageToggle() {
     i18n.changeLanguage(newLang);
   };
 
-  const isEnglish = i18n.language === 'en';
+  const isEnglish = i18n.language === 'en' || i18n.language?.startsWith('en');
+  const ariaLabel = isEnglish 
+    ? 'Cambiar idioma a Español' 
+    : 'Switch language to English';
 
   return (
     <Button
@@ -18,6 +21,7 @@ export default function LanguageToggle() {
       size="sm"
       onClick={toggleLanguage}
       className="gap-2 border-primary/30 hover:border-primary/50 hover:bg-primary/10"
+      aria-label={ariaLabel}
     >
       <Globe className="w-4 h-4" />
       <span className="hidden sm:inline">

@@ -4,50 +4,49 @@ import { Search, Filter, X } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import BookCard from '@/components/books/BookCard';
 import { useBooks } from '@/hooks/useBooks';
+import { useTranslatedBooks } from '@/hooks/useTranslatedBook';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { getBookCategory, BookCategory } from '@/utils/bookTranslations';
 
 export default function BooksPage() {
   const { t } = useTranslation();
   const { data: books, isLoading } = useBooks();
   const [search, setSearch] = useState('');
-  const [selectedSeries, setSelectedSeries] = useState<string | null>(null);
-  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
   const [selectedFormat, setSelectedFormat] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<BookCategory>('saga');
 
-  // Extract unique filters
-  const filters = useMemo(() => {
-    if (!books) return { series: [], languages: [], formats: [] };
+  // Get translated books
+  const translatedBooks = useTranslatedBooks(books || []);
+
+  // Filter books by category
+  const booksByCategory = useMemo(() => {
+    if (!books) return { saga: [], collaborations: [] };
     
-    const series = [...new Set(books.map(b => b.series).filter(Boolean))] as string[];
-    const languages = [...new Set(books.map(b => b.language).filter(Boolean))] as string[];
-    const formats = ['paperback', 'ebook', 'audiobook'];
+    const saga = books.filter(book => getBookCategory(book.id) === 'saga');
+    const collaborations = books.filter(book => getBookCategory(book.id) === 'collaborations');
     
-    return { series, languages, formats };
+    return { saga, collaborations };
   }, [books]);
 
-  // Filter books
+  // Filter books within active category
   const filteredBooks = useMemo(() => {
-    if (!books) return [];
+    const categoryBooks = activeCategory === 'saga' ? booksByCategory.saga : booksByCategory.collaborations;
     
-    return books.filter(book => {
-      // Search filter
+    return categoryBooks.filter(book => {
+      // Search filter using translated content
       if (search) {
+        const translatedBook = translatedBooks.find(tb => tb.id === book.id);
         const searchLower = search.toLowerCase();
         const matchesSearch = 
-          book.title.toLowerCase().includes(searchLower) ||
-          book.series?.toLowerCase().includes(searchLower) ||
-          book.synopsis?.toLowerCase().includes(searchLower) ||
-          book.tagline?.toLowerCase().includes(searchLower);
+          (translatedBook?.translatedTitle || book.title).toLowerCase().includes(searchLower) ||
+          (translatedBook?.translatedSeries || book.series)?.toLowerCase().includes(searchLower) ||
+          (translatedBook?.translatedSynopsis || book.synopsis)?.toLowerCase().includes(searchLower) ||
+          (translatedBook?.translatedTagline || book.tagline)?.toLowerCase().includes(searchLower);
         if (!matchesSearch) return false;
       }
-      
-      // Series filter
-      if (selectedSeries && book.series !== selectedSeries) return false;
-      
-      // Language filter
-      if (selectedLanguage && book.language !== selectedLanguage) return false;
       
       // Format filter
       if (selectedFormat) {
@@ -58,13 +57,11 @@ export default function BooksPage() {
       
       return true;
     });
-  }, [books, search, selectedSeries, selectedLanguage, selectedFormat]);
+  }, [books, translatedBooks, search, selectedFormat, activeCategory, booksByCategory]);
 
-  const hasActiveFilters = selectedSeries || selectedLanguage || selectedFormat;
+  const hasActiveFilters = selectedFormat;
 
   const clearFilters = () => {
-    setSelectedSeries(null);
-    setSelectedLanguage(null);
     setSelectedFormat(null);
   };
 
@@ -82,8 +79,39 @@ export default function BooksPage() {
         </div>
       </section>
 
-      {/* Search & Filters */}
+      {/* Category Tabs */}
       <section className="py-8 border-b border-border/50">
+        <div className="container mx-auto px-4">
+          <Tabs value={activeCategory} onValueChange={(value) => setActiveCategory(value as BookCategory)}>
+            <TabsList className="w-full md:w-auto grid grid-cols-2 md:inline-flex h-auto gap-2 bg-transparent p-0">
+              <TabsTrigger 
+                value="saga" 
+                className="px-6 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg border border-border/50 data-[state=active]:border-primary bg-card"
+              >
+                <span className="text-sm md:text-base">{t('books.sagaTab')}</span>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="collaborations"
+                className="px-6 py-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg border border-border/50 data-[state=active]:border-primary bg-card"
+              >
+                <span className="text-sm md:text-base">{t('books.collaborationsTab')}</span>
+              </TabsTrigger>
+            </TabsList>
+
+            {/* Category Description */}
+            <div className="mt-4 text-muted-foreground">
+              {activeCategory === 'saga' ? (
+                <p>{t('books.sagaDescription')}</p>
+              ) : (
+                <p>{t('books.collaborationsDescription')}</p>
+              )}
+            </div>
+          </Tabs>
+        </div>
+      </section>
+
+      {/* Search & Filters */}
+      <section className="py-6 border-b border-border/50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
@@ -100,34 +128,6 @@ export default function BooksPage() {
 
             {/* Filter Buttons */}
             <div className="flex flex-wrap gap-2">
-              {/* Series */}
-              {filters.series.length > 0 && (
-                <select
-                  value={selectedSeries || ''}
-                  onChange={(e) => setSelectedSeries(e.target.value || null)}
-                  className="h-10 px-4 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                >
-                  <option value="">{t('books.allSeries')}</option>
-                  {filters.series.map(s => (
-                    <option key={s} value={s}>{s}</option>
-                  ))}
-                </select>
-              )}
-
-              {/* Language */}
-              {filters.languages.length > 0 && (
-                <select
-                  value={selectedLanguage || ''}
-                  onChange={(e) => setSelectedLanguage(e.target.value || null)}
-                  className="h-10 px-4 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                >
-                  <option value="">{t('books.allLanguages')}</option>
-                  {filters.languages.map(l => (
-                    <option key={l} value={l}>{l}</option>
-                  ))}
-                </select>
-              )}
-
               {/* Format */}
               <select
                 value={selectedFormat || ''}
@@ -152,18 +152,6 @@ export default function BooksPage() {
           {/* Active Filters */}
           {hasActiveFilters && (
             <div className="flex flex-wrap gap-2 mt-4">
-              {selectedSeries && (
-                <Badge variant="secondary" className="gap-1">
-                  {t('books.series')}: {selectedSeries}
-                  <button onClick={() => setSelectedSeries(null)}><X className="w-3 h-3" /></button>
-                </Badge>
-              )}
-              {selectedLanguage && (
-                <Badge variant="secondary" className="gap-1">
-                  {t('books.language')}: {selectedLanguage}
-                  <button onClick={() => setSelectedLanguage(null)}><X className="w-3 h-3" /></button>
-                </Badge>
-              )}
               {selectedFormat && (
                 <Badge variant="secondary" className="gap-1">
                   {t('books.format')}: {selectedFormat}
@@ -180,7 +168,7 @@ export default function BooksPage() {
         <div className="container mx-auto px-4">
           {isLoading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {[...Array(8)].map((_, i) => (
+              {[...Array(4)].map((_, i) => (
                 <div key={i} className="bg-card rounded-xl overflow-hidden animate-pulse">
                   <div className="aspect-[2/3] bg-secondary" />
                   <div className="p-4 space-y-3">

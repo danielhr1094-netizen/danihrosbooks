@@ -2,12 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import BooksPage from "./pages/BooksPage";
 import BookDetailPage from "./pages/BookDetailPage";
-import AudiobooksPage from "./pages/AudiobooksPage";
 import GalleryPage from "./pages/GalleryPage";
 import NewsPage from "./pages/NewsPage";
 import PostDetailPage from "./pages/PostDetailPage";
@@ -30,7 +29,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/libros" element={<BooksPage />} />
             <Route path="/libros/:id" element={<BookDetailPage />} />
-            <Route path="/audiolibros" element={<AudiobooksPage />} />
+            {/* Redirect audiobooks to books page */}
+            <Route path="/audiolibros" element={<Navigate to="/libros" replace />} />
             <Route path="/galeria" element={<GalleryPage />} />
             <Route path="/noticias" element={<NewsPage />} />
             <Route path="/noticias/:slug" element={<PostDetailPage />} />

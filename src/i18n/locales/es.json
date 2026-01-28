@@ -2,7 +2,6 @@
   "nav": {
     "home": "Inicio",
     "books": "Libros",
-    "audiobooks": "Audiolibros",
     "gallery": "Galería",
     "news": "Noticias",
     "about": "Sobre el Autor",
@@ -24,8 +23,7 @@
       "titleLine1": "Bienvenido a los",
       "titleLine2": "Cuentos de Terra",
       "subtitle": "Historias de fantasía que transportan a mundos donde la magia es real y las aventuras nunca terminan. Por Daniel Hernandez Rosales.",
-      "exploreBooks": "Explorar Libros",
-      "audiobooks": "Audiolibros"
+      "exploreBooks": "Explorar Libros"
     },
     "latestRelease": {
       "title": "Último Lanzamiento",
@@ -46,13 +44,13 @@
     },
     "cta": {
       "title": "¿Listo para tu próxima aventura?",
-      "subtitle": "Explora el catálogo completo y encuentra tu próxima historia favorita. Disponible en formato físico, eBook y audiolibro.",
+      "subtitle": "Explora el catálogo completo y encuentra tu próxima historia favorita. Disponible en formato físico y eBook.",
       "button": "Explorar Catálogo"
     }
   },
   "books": {
     "title": "Catálogo de Libros",
-    "subtitle": "Explora todas las historias de fantasía. Disponibles en papel, digital y audio.",
+    "subtitle": "Explora todas las historias de fantasía. Disponibles en papel y digital.",
     "searchPlaceholder": "Buscar por título, saga...",
     "allSeries": "Todas las Sagas",
     "allLanguages": "Todos los Idiomas",
@@ -73,14 +71,11 @@
     "new": "Nuevo",
     "viewDetails": "Ver detalles",
     "buyNow": "Comprar ahora",
-    "formats": "Formatos disponibles"
-  },
-  "audiobooks": {
-    "title": "Audiolibros",
-    "badge": "Escucha en cualquier lugar",
-    "subtitle": "Disfruta de las historias de fantasía mientras caminas, conduces o te relajas. Disponibles en Audible, Amazon e iTunes.",
-    "comingSoon": "Próximamente",
-    "comingSoonDesc": "Los audiolibros estarán disponibles pronto. ¡Mantente atento!"
+    "formats": "Formatos disponibles",
+    "sagaTab": "Saga de los Cuentos Perdidos de Terra",
+    "collaborationsTab": "Colaboraciones",
+    "sagaDescription": "Una épica serie de fantasía ambientada en el mundo mágico de Terra",
+    "collaborationsDescription": "Proyectos especiales y colaboraciones literarias"
   },
   "gallery": {
     "title": "Galería",
@@ -163,5 +158,25 @@
   "common": {
     "paper": "Papel",
     "audio": "Audio"
+  },
+  "bookData": {
+    "medallon": {
+      "title": "El Medallón del Destino",
+      "series": "Los Cuentos Perdidos de Terra",
+      "tagline": "El destino de Terra está en sus manos",
+      "synopsis": "En un mundo donde la magia fue olvidada, un antiguo medallón despierta poderes ancestrales. Cuando Elara descubre el artefacto en las ruinas de un templo perdido, su vida cambia para siempre. Ahora debe enfrentarse a fuerzas oscuras que buscan el medallón y descubrir la verdad sobre su propio linaje."
+    },
+    "sombras": {
+      "title": "Sombras del Pasado",
+      "series": "Los Cuentos Perdidos de Terra",
+      "tagline": "El pasado siempre regresa",
+      "synopsis": "Las sombras guardan secretos que algunos prefieren olvidar. Cuando el pasado amenaza con destruir el presente, solo aquellos valientes que se atrevan a enfrentar sus miedos más profundos podrán salvar lo que aman."
+    },
+    "luvis": {
+      "title": "Luvis: Historia de una Flor Valiente",
+      "series": null,
+      "tagline": "La aventura de una pequeña heroína",
+      "synopsis": "Una pequeña flor llamada Luvis sueña con ver el mundo más allá del jardín donde nació. Con valentía y determinación, emprende un viaje mágico que le enseñará que el verdadero coraje viene del corazón. Una historia encantadora para lectores de todas las edades."
+    }
   }
 }

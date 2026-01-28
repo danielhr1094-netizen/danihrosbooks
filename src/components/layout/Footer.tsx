@@ -27,7 +27,6 @@ export default function Footer() {
             <h4 className="font-display text-lg font-semibold text-primary mb-4">{t('footer.links')}</h4>
             <ul className="space-y-2">
               <li><Link to="/libros" className="text-muted-foreground hover:text-foreground transition-colors">{t('nav.books')}</Link></li>
-              <li><Link to="/audiolibros" className="text-muted-foreground hover:text-foreground transition-colors">{t('nav.audiobooks')}</Link></li>
               <li><Link to="/galeria" className="text-muted-foreground hover:text-foreground transition-colors">{t('nav.gallery')}</Link></li>
               <li><Link to="/noticias" className="text-muted-foreground hover:text-foreground transition-colors">{t('nav.news')}</Link></li>
               <li><Link to="/contacto" className="text-muted-foreground hover:text-foreground transition-colors">{t('nav.contact')}</Link></li>
@@ -38,17 +37,37 @@ export default function Footer() {
           <div>
             <h4 className="font-display text-lg font-semibold text-primary mb-4">{t('footer.followMe')}</h4>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all">
-                <Instagram className="w-5 h-5" />
+              <a 
+                href="#" 
+                className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all"
+                aria-label="Instagram"
+                title="Instagram"
+              >
+                <Instagram className="w-7 h-7" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all">
-                <Twitter className="w-5 h-5" />
+              <a 
+                href="#" 
+                className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all"
+                aria-label="Twitter"
+                title="Twitter"
+              >
+                <Twitter className="w-7 h-7" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all">
-                <Facebook className="w-5 h-5" />
+              <a 
+                href="#" 
+                className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all"
+                aria-label="Facebook"
+                title="Facebook"
+              >
+                <Facebook className="w-7 h-7" />
               </a>
-              <a href="mailto:contacto@danihros.com" className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all">
-                <Mail className="w-5 h-5" />
+              <a 
+                href="mailto:contacto@danihros.com" 
+                className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all"
+                aria-label="Email"
+                title="Email"
+              >
+                <Mail className="w-7 h-7" />
               </a>
             </div>
           </div>

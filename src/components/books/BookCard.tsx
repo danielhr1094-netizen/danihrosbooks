@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Headphones, BookOpen, Smartphone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Tables } from '@/integrations/supabase/types';
+import { useTranslatedBook } from '@/hooks/useTranslatedBook';
 
 type Book = Tables<'books'>;
 
@@ -14,6 +15,8 @@ interface BookCardProps {
 
 export default function BookCard({ book, className }: BookCardProps) {
   const { t } = useTranslation();
+  const translatedBook = useTranslatedBook(book);
+  
   const hasAudiobook = book.audible_url || book.itunes_url;
   const hasEbook = book.amazon_kindle_url;
   const hasPaperback = book.amazon_paperback_url;
@@ -30,7 +33,7 @@ export default function BookCard({ book, className }: BookCardProps) {
         {book.cover_image_url ? (
           <img
             src={book.cover_image_url}
-            alt={book.title}
+            alt={translatedBook.translatedTitle}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
@@ -56,15 +59,15 @@ export default function BookCard({ book, className }: BookCardProps) {
 
       <div className="p-4">
         <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-          {book.title}
+          {translatedBook.translatedTitle}
         </h3>
         
-        {book.series && (
-          <p className="text-sm text-primary/80 mt-1">{book.series}</p>
+        {translatedBook.translatedSeries && (
+          <p className="text-sm text-primary/80 mt-1">{translatedBook.translatedSeries}</p>
         )}
 
-        {book.tagline && (
-          <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{book.tagline}</p>
+        {translatedBook.translatedTagline && (
+          <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{translatedBook.translatedTagline}</p>
         )}
 
         <div className="flex items-center gap-3 mt-3 text-muted-foreground">

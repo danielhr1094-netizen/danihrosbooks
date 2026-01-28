@@ -2,7 +2,6 @@
   "nav": {
     "home": "Home",
     "books": "Books",
-    "audiobooks": "Audiobooks",
     "gallery": "Gallery",
     "news": "News",
     "about": "About the Author",
@@ -24,8 +23,7 @@
       "titleLine1": "Welcome to the",
       "titleLine2": "Tales of Terra",
       "subtitle": "Fantasy stories that transport you to worlds where magic is real and adventures never end. By Daniel Hernandez Rosales.",
-      "exploreBooks": "Explore Books",
-      "audiobooks": "Audiobooks"
+      "exploreBooks": "Explore Books"
     },
     "latestRelease": {
       "title": "Latest Release",
@@ -46,13 +44,13 @@
     },
     "cta": {
       "title": "Ready for your next adventure?",
-      "subtitle": "Explore the complete catalog and find your next favorite story. Available in paperback, eBook, and audiobook.",
+      "subtitle": "Explore the complete catalog and find your next favorite story. Available in paperback and eBook.",
       "button": "Explore Catalog"
     }
   },
   "books": {
     "title": "Book Catalog",
-    "subtitle": "Explore all fantasy stories. Available in paper, digital, and audio.",
+    "subtitle": "Explore all fantasy stories. Available in paper and digital.",
     "searchPlaceholder": "Search by title, saga...",
     "allSeries": "All Series",
     "allLanguages": "All Languages",
@@ -73,14 +71,11 @@
     "new": "New",
     "viewDetails": "View details",
     "buyNow": "Buy now",
-    "formats": "Available formats"
-  },
-  "audiobooks": {
-    "title": "Audiobooks",
-    "badge": "Listen anywhere",
-    "subtitle": "Enjoy fantasy stories while walking, driving, or relaxing. Available on Audible, Amazon, and iTunes.",
-    "comingSoon": "Coming Soon",
-    "comingSoonDesc": "Audiobooks will be available soon. Stay tuned!"
+    "formats": "Available formats",
+    "sagaTab": "The Lost Tales of Terra Saga",
+    "collaborationsTab": "Collaborations",
+    "sagaDescription": "An epic fantasy series set in the magical world of Terra",
+    "collaborationsDescription": "Special projects and literary collaborations"
   },
   "gallery": {
     "title": "Gallery",
@@ -163,5 +158,25 @@
   "common": {
     "paper": "Paper",
     "audio": "Audio"
+  },
+  "bookData": {
+    "medallon": {
+      "title": "The Medallion of Destiny",
+      "series": "The Lost Tales of Terra",
+      "tagline": "The fate of Terra is in her hands",
+      "synopsis": "In a world where magic was forgotten, an ancient medallion awakens ancestral powers. When Elara discovers the artifact in the ruins of a lost temple, her life changes forever. Now she must face dark forces seeking the medallion and uncover the truth about her own lineage."
+    },
+    "sombras": {
+      "title": "Shadows of the Past",
+      "series": "The Lost Tales of Terra",
+      "tagline": "The past always returns",
+      "synopsis": "Shadows hold secrets that some prefer to forget. When the past threatens to destroy the present, only those brave enough to face their deepest fears can save what they love."
+    },
+    "luvis": {
+      "title": "Luvis: Story of a Brave Flower",
+      "series": null,
+      "tagline": "The adventure of a little heroine",
+      "synopsis": "A little flower named Luvis dreams of seeing the world beyond the garden where she was born. With courage and determination, she embarks on a magical journey that will teach her that true bravery comes from the heart. An enchanting story for readers of all ages."
+    }
   }
 }

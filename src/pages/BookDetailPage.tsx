@@ -5,6 +5,7 @@ import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useBook } from '@/hooks/useBooks';
+import { useTranslatedBook } from '@/hooks/useTranslatedBook';
 import { format } from 'date-fns';
 import { es, enUS } from 'date-fns/locale';
 
@@ -13,6 +14,30 @@ export default function BookDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading, error } = useBook(id || '');
   const dateLocale = i18n.language === 'es' ? es : enUS;
+
+  // We need to call the hook unconditionally, so we pass a placeholder if book is null
+  const translatedBook = useTranslatedBook(book || {
+    id: '',
+    title: '',
+    series: null,
+    synopsis: null,
+    tagline: null,
+    amazon_paperback_url: null,
+    amazon_kindle_url: null,
+    audible_url: null,
+    itunes_url: null,
+    cover_image_url: null,
+    publish_date: null,
+    pages: null,
+    language: null,
+    formats: null,
+    tags: null,
+    featured: null,
+    is_new: null,
+    price: null,
+    created_at: null,
+    updated_at: null,
+  });
 
   if (isLoading) {
     return (
@@ -71,7 +96,7 @@ export default function BookDetailPage() {
             {book.cover_image_url ? (
               <img
                 src={book.cover_image_url}
-                alt={book.title}
+                alt={translatedBook.translatedTitle}
                 className="w-full h-full object-cover"
               />
             ) : (
@@ -102,23 +127,23 @@ export default function BookDetailPage() {
             {/* Title & Series */}
             <div>
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
-                {book.title}
+                {translatedBook.translatedTitle}
               </h1>
-              {book.series && (
-                <p className="text-xl text-primary">{book.series}</p>
+              {translatedBook.translatedSeries && (
+                <p className="text-xl text-primary">{translatedBook.translatedSeries}</p>
               )}
             </div>
 
-            {book.tagline && (
-              <p className="text-lg text-muted-foreground italic">"{book.tagline}"</p>
+            {translatedBook.translatedTagline && (
+              <p className="text-lg text-muted-foreground italic">"{translatedBook.translatedTagline}"</p>
             )}
 
             {/* Synopsis */}
-            {book.synopsis && (
+            {translatedBook.translatedSynopsis && (
               <div>
                 <h2 className="font-display text-xl font-semibold text-foreground mb-3">{t('bookDetail.synopsis')}</h2>
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {book.synopsis}
+                  {translatedBook.translatedSynopsis}
                 </p>
               </div>
             )}
@@ -166,7 +191,7 @@ export default function BookDetailPage() {
               <div className="grid sm:grid-cols-2 gap-3">
                 {hasPaperback && (
                   <Button asChild variant="gold" size="lg" className="w-full gap-2">
-                    <a href={book.amazon_paperback_url || '#'} target="_blank" rel="noopener noreferrer">
+                    <a href={translatedBook.localizedPaperbackUrl || '#'} target="_blank" rel="noopener noreferrer">
                       <BookOpen className="w-5 h-5" />
                       Amazon Paperback
                       <ExternalLink className="w-4 h-4" />
@@ -175,7 +200,7 @@ export default function BookDetailPage() {
                 )}
                 {hasEbook && (
                   <Button asChild variant="outline" size="lg" className="w-full gap-2">
-                    <a href={book.amazon_kindle_url || '#'} target="_blank" rel="noopener noreferrer">
+                    <a href={translatedBook.localizedKindleUrl || '#'} target="_blank" rel="noopener noreferrer">
                       <Smartphone className="w-5 h-5" />
                       Kindle eBook
                       <ExternalLink className="w-4 h-4" />

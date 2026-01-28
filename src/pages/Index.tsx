@@ -1,13 +1,76 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, BookOpen, Headphones, Sparkles } from 'lucide-react';
+import { ArrowRight, BookOpen, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
 import BookCard from '@/components/books/BookCard';
 import AnnouncementCard from '@/components/announcements/AnnouncementCard';
 import { useFeaturedBooks, useBooks } from '@/hooks/useBooks';
 import { useActiveAnnouncements } from '@/hooks/useAnnouncements';
+import { useTranslatedBook } from '@/hooks/useTranslatedBook';
 import heroBg from '@/assets/hero-bg.jpg';
+
+// Component for the Latest Release section with translation support
+function LatestReleaseSection({ book }: { book: NonNullable<ReturnType<typeof useBooks>['data']>[0] }) {
+  const { t } = useTranslation();
+  const translatedBook = useTranslatedBook(book);
+
+  return (
+    <section className="py-20 bg-card/50">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between mb-10">
+          <div>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
+              {t('home.latestRelease.title')}
+            </h2>
+            <p className="text-muted-foreground">{t('home.latestRelease.subtitle')}</p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div className="aspect-[2/3] max-w-sm mx-auto md:mx-0 rounded-xl overflow-hidden shadow-[0_20px_60px_hsl(0_0%_0%/0.5)]">
+            {book.cover_image_url ? (
+              <img
+                src={book.cover_image_url}
+                alt={translatedBook.translatedTitle}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full bg-secondary flex items-center justify-center">
+                <BookOpen className="w-20 h-20 text-muted-foreground/30" />
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-6">
+            {book.is_new && (
+              <span className="inline-block px-4 py-1 rounded-full bg-accent text-accent-foreground text-sm font-medium">
+                {t('home.latestRelease.new')}
+              </span>
+            )}
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+              {translatedBook.translatedTitle}
+            </h3>
+            {translatedBook.translatedSeries && (
+              <p className="text-primary text-lg">{translatedBook.translatedSeries}</p>
+            )}
+            {translatedBook.translatedSynopsis && (
+              <p className="text-muted-foreground line-clamp-3">
+                {translatedBook.translatedSynopsis}
+              </p>
+            )}
+            <Link to={`/libros/${book.id}`}>
+              <Button variant="gold" size="lg" className="gap-2">
+                {t('home.latestRelease.viewDetails')}
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Index() {
   const { t } = useTranslation();
@@ -58,12 +121,6 @@ export default function Index() {
                 {t('home.hero.exploreBooks')}
               </Button>
             </Link>
-            <Link to="/audiolibros">
-              <Button variant="outline" size="xl" className="gap-3">
-                <Headphones className="w-5 h-5" />
-                {t('home.hero.audiobooks')}
-              </Button>
-            </Link>
           </div>
         </div>
 
@@ -76,61 +133,7 @@ export default function Index() {
       </section>
 
       {/* Latest Release */}
-      {latestBook && (
-        <section className="py-20 bg-card/50">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between mb-10">
-              <div>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
-                  {t('home.latestRelease.title')}
-                </h2>
-                <p className="text-muted-foreground">{t('home.latestRelease.subtitle')}</p>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-10 items-center">
-              <div className="aspect-[2/3] max-w-sm mx-auto md:mx-0 rounded-xl overflow-hidden shadow-[0_20px_60px_hsl(0_0%_0%/0.5)]">
-                {latestBook.cover_image_url ? (
-                  <img
-                    src={latestBook.cover_image_url}
-                    alt={latestBook.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-secondary flex items-center justify-center">
-                    <BookOpen className="w-20 h-20 text-muted-foreground/30" />
-                  </div>
-                )}
-              </div>
-
-              <div className="space-y-6">
-                {latestBook.is_new && (
-                  <span className="inline-block px-4 py-1 rounded-full bg-accent text-accent-foreground text-sm font-medium">
-                    {t('home.latestRelease.new')}
-                  </span>
-                )}
-                <h3 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-                  {latestBook.title}
-                </h3>
-                {latestBook.series && (
-                  <p className="text-primary text-lg">{latestBook.series}</p>
-                )}
-                {latestBook.synopsis && (
-                  <p className="text-muted-foreground line-clamp-3">
-                    {latestBook.synopsis}
-                  </p>
-                )}
-                <Link to={`/libros/${latestBook.id}`}>
-                  <Button variant="gold" size="lg" className="gap-2">
-                    {t('home.latestRelease.viewDetails')}
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
+      {latestBook && <LatestReleaseSection book={latestBook} />}
 
       {/* Featured Books */}
       {featuredBooks && featuredBooks.length > 0 && (

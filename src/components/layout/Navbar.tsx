@@ -10,7 +10,6 @@ import LanguageToggle from '@/components/LanguageToggle';
 const getNavLinks = (t: (key: string) => string) => [
   { href: '/', label: t('nav.home') },
   { href: '/libros', label: t('nav.books') },
-  { href: '/audiolibros', label: t('nav.audiobooks') },
   { href: '/galeria', label: t('nav.gallery') },
   { href: '/noticias', label: t('nav.news') },
   { href: '/autor', label: t('nav.about') },

@@ -30,9 +30,9 @@ export default function BookCard({ book, className }: BookCardProps) {
       )}
     >
       <div className="relative aspect-[2/3] overflow-hidden bg-secondary">
-        {book.cover_image_url ? (
+        {translatedBook.localizedCoverUrl ? (
           <img
-            src={book.cover_image_url}
+            src={translatedBook.localizedCoverUrl}
             alt={translatedBook.translatedTitle}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />

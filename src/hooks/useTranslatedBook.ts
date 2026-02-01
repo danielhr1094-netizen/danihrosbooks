@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Tables } from '@/integrations/supabase/types';
-import { BOOK_TRANSLATION_KEYS, ENGLISH_AMAZON_LINKS } from '@/utils/bookTranslations';
+import { BOOK_TRANSLATION_KEYS, ENGLISH_AMAZON_LINKS, ENGLISH_COVER_IMAGES } from '@/utils/bookTranslations';
 
 type Book = Tables<'books'>;
 
@@ -11,6 +11,7 @@ interface TranslatedBook extends Book {
   translatedSynopsis: string | null;
   localizedPaperbackUrl: string | null;
   localizedKindleUrl: string | null;
+  localizedCoverUrl: string | null;
 }
 
 export function useTranslatedBook(book: Book): TranslatedBook {
@@ -29,11 +30,13 @@ export function useTranslatedBook(book: Book): TranslatedBook {
       translatedSynopsis: book.synopsis,
       localizedPaperbackUrl: book.amazon_paperback_url,
       localizedKindleUrl: book.amazon_kindle_url,
+      localizedCoverUrl: book.cover_image_url,
     };
   }
   
   // Get English translations
   const englishLinks = ENGLISH_AMAZON_LINKS[book.id];
+  const englishCover = ENGLISH_COVER_IMAGES[book.id];
   
   return {
     ...book,
@@ -43,6 +46,7 @@ export function useTranslatedBook(book: Book): TranslatedBook {
     translatedSynopsis: t(`bookData.${translationKey}.synopsis`, { defaultValue: book.synopsis }),
     localizedPaperbackUrl: englishLinks?.paperback || book.amazon_paperback_url,
     localizedKindleUrl: englishLinks?.kindle || book.amazon_kindle_url,
+    localizedCoverUrl: englishCover || book.cover_image_url,
   };
 }
 
@@ -62,10 +66,12 @@ export function useTranslatedBooks(books: Book[]): TranslatedBook[] {
         translatedSynopsis: book.synopsis,
         localizedPaperbackUrl: book.amazon_paperback_url,
         localizedKindleUrl: book.amazon_kindle_url,
+        localizedCoverUrl: book.cover_image_url,
       };
     }
     
     const englishLinks = ENGLISH_AMAZON_LINKS[book.id];
+    const englishCover = ENGLISH_COVER_IMAGES[book.id];
     
     return {
       ...book,
@@ -75,6 +81,7 @@ export function useTranslatedBooks(books: Book[]): TranslatedBook[] {
       translatedSynopsis: t(`bookData.${translationKey}.synopsis`, { defaultValue: book.synopsis }),
       localizedPaperbackUrl: englishLinks?.paperback || book.amazon_paperback_url,
       localizedKindleUrl: englishLinks?.kindle || book.amazon_kindle_url,
+      localizedCoverUrl: englishCover || book.cover_image_url,
     };
   });
 }

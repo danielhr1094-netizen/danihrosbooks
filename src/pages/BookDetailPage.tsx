@@ -93,9 +93,9 @@ export default function BookDetailPage() {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Cover */}
           <div className="aspect-[2/3] max-w-md mx-auto lg:mx-0 rounded-xl overflow-hidden shadow-[0_20px_60px_hsl(0_0%_0%/0.5)]">
-            {book.cover_image_url ? (
+            {translatedBook.localizedCoverUrl ? (
               <img
-                src={book.cover_image_url}
+                src={translatedBook.localizedCoverUrl}
                 alt={translatedBook.translatedTitle}
                 className="w-full h-full object-cover"
               />

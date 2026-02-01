@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Layout from '@/components/layout/Layout';
 import BookCard from '@/components/books/BookCard';
 import AnnouncementCard from '@/components/announcements/AnnouncementCard';
-import { useFeaturedBooks, useBooks } from '@/hooks/useBooks';
+import { useBooks } from '@/hooks/useBooks';
 import { useActiveAnnouncements } from '@/hooks/useAnnouncements';
 import { useTranslatedBook } from '@/hooks/useTranslatedBook';
 import heroBg from '@/assets/hero-bg.jpg';
@@ -29,9 +29,9 @@ function LatestReleaseSection({ book }: { book: NonNullable<ReturnType<typeof us
 
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div className="aspect-[2/3] max-w-sm mx-auto md:mx-0 rounded-xl overflow-hidden shadow-[0_20px_60px_hsl(0_0%_0%/0.5)]">
-            {book.cover_image_url ? (
+            {translatedBook.localizedCoverUrl ? (
               <img
-                src={book.cover_image_url}
+                src={translatedBook.localizedCoverUrl}
                 alt={translatedBook.translatedTitle}
                 className="w-full h-full object-cover"
               />
@@ -74,7 +74,6 @@ function LatestReleaseSection({ book }: { book: NonNullable<ReturnType<typeof us
 
 export default function Index() {
   const { t } = useTranslation();
-  const { data: featuredBooks } = useFeaturedBooks();
   const { data: allBooks } = useBooks();
   const { data: announcements } = useActiveAnnouncements(3);
   
@@ -134,43 +133,6 @@ export default function Index() {
 
       {/* Latest Release */}
       {latestBook && <LatestReleaseSection book={latestBook} />}
-
-      {/* Featured Books */}
-      {featuredBooks && featuredBooks.length > 0 && (
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between mb-10">
-              <div>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
-                  {t('home.featured.title')}
-                </h2>
-                <p className="text-muted-foreground">{t('home.featured.subtitle')}</p>
-              </div>
-              <Link to="/libros" className="hidden md:block">
-                <Button variant="outline" className="gap-2">
-                  {t('home.featured.viewAll')}
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredBooks.slice(0, 6).map((book) => (
-                <BookCard key={book.id} book={book} />
-              ))}
-            </div>
-
-            <div className="mt-10 text-center md:hidden">
-              <Link to="/libros">
-                <Button variant="outline" className="gap-2">
-                  {t('home.featured.viewAllBooks')}
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Announcements */}
       {announcements && announcements.length > 0 && (

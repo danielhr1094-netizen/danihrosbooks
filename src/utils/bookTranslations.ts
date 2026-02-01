@@ -29,6 +29,13 @@ export const ENGLISH_AMAZON_LINKS: Record<string, { paperback: string; kindle: s
   },
 };
 
+// English cover images for each book
+export const ENGLISH_COVER_IMAGES: Record<string, string> = {
+  'd2ceea00-93e2-4615-9b1a-6b294db54dec': '/images/covers/medallon_cover_en.jpg',
+  '945a0d71-c261-4769-89f3-bc0fb02957d9': '/images/covers/sombras_cover_en.jpg',
+  'e8ede3ab-a356-4c2d-8a25-8e8ed6a18129': '/images/covers/luvis_cover_en.jpg',
+};
+
 // Book category mapping for filtering
 export type BookCategory = 'saga' | 'collaborations';
 

@@ -1,26 +1,92 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Danihros Books</title>
+  <meta name="description" content="Libros de Danihros. Acceso directo a Amazon y redes sociales." />
+  <style>
+    :root { color-scheme: dark; }
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 10%, #1b1b24 0%, #0b0b10 55%, #050507 100%);
+      color:#f2f2f2;
+    }
+    .wrap{ max-width:980px; margin:0 auto; padding:48px 18px; }
+    .card{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      border-radius:18px;
+      padding:26px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .top{ display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+    .logo{
+      width:64px; height:64px; border-radius:16px;
+      background: linear-gradient(135deg, #f1c14b, #c79a2a);
+      display:grid; place-items:center; color:#151515; font-weight:800;
+      letter-spacing:.5px;
+    }
+    h1{ margin:0; font-size:32px; line-height:1.1; }
+    .sub{ margin:6px 0 0; opacity:.85 }
+    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap:14px; margin-top:18px; }
+    .btn{
+      display:flex; justify-content:space-between; gap:10px; align-items:center;
+      padding:14px 14px; border-radius:14px;
+      border:1px solid rgba(241,193,75,.25);
+      background: rgba(241,193,75,.10);
+      color:#f7f2e6; text-decoration:none; font-weight:650;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{ transform: translateY(-2px); background: rgba(241,193,75,.16); border-color: rgba(241,193,75,.38); }
+    .section-title{ margin:22px 0 10px; font-size:15px; letter-spacing:.12em; text-transform:uppercase; opacity:.7 }
+    .small{ font-size:13px; opacity:.72; margin-top:14px; line-height:1.4 }
+    .pill{
+      display:inline-block; padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04);
+      font-size:12px; opacity:.85
+    }
+    footer{ margin-top:18px; opacity:.65; font-size:12px }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div class="logo">DB</div>
+        <div>
+          <h1>Danihros Books</h1>
+          <p class="sub">Acceso directo a mis libros y redes. <span class="pill">Saga de Terra</span></p>
+        </div>
+      </div>
 
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+      <div class="section-title">Libros en Amazon</div>
+      <div class="grid">
+        <a class="btn" href="https://a.co/d/0egzrFf" target="_blank" rel="noopener">The Medallion of Destiny <span>→</span></a>
+        <a class="btn" href="https://a.co/d/hzXoMq7" target="_blank" rel="noopener">Shadow of the Past <span>→</span></a>
+        <a class="btn" href="https://a.co/d/9AO17fF" target="_blank" rel="noopener">Luvis: History of a Brave Flower <span>→</span></a>
+      </div>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+      <div class="section-title">Redes</div>
+      <div class="grid">
+        <!-- Reemplaza estos links con los tuyos -->
+        <a class="btn" href="#" target="_blank" rel="noopener">YouTube <span>→</span></a>
+        <a class="btn" href="#" target="_blank" rel="noopener">TikTok <span>→</span></a>
+        <a class="btn" href="#" target="_blank" rel="noopener">Instagram <span>→</span></a>
+      </div>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+      <p class="small">
+        Tip: cuando termines de conectar tu dominio, esta página será tu “home” rápida.
+        Luego podemos mejorarla con tus portadas, secciones y switch ES/EN.
+      </p>
+
+      <footer>© <span id="y"></span> Danihros. Paso a paso. Be better.</footer>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
+
